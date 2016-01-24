@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Elliptical"
+    tools:showIn="@layout/activity_equipment2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textColor = "@color/cardview_dark_background"
+        android:text="Do 5-minute intervals increasing resistance each time. Start and stay with a steady pace—the base-pace rate—and increase the machine’s incline/decline setting. Move at base-pace for 2 minutes, then double the speed for 2 minutes (keeping incline steady) and recover for 1 minute. Repeat this pattern as many times as desired."></TextView>
+</android.support.v4.widget.NestedScrollView>

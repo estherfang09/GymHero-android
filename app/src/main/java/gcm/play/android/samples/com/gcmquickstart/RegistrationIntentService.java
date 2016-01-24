@@ -29,10 +29,19 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    private static OkHttpClient client = new OkHttpClient();
+    private static final String USERNAME = "Bob";
+    private static final String SERVER_URL = "https://gymhero.herokuapp.com/api/registerUser";
 
     public RegistrationIntentService() {
         super(TAG);
@@ -87,6 +96,27 @@ public class RegistrationIntentService extends IntentService {
      */
     private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
+        RequestBody formBody = new FormBody.Builder()
+                .add("token", token)
+                .add("user", USERNAME)
+                .build();
+
+        try {
+            registerUser(formBody);
+        } catch (Exception e){
+            Log.d("register", "Borked");
+            e.printStackTrace();
+        }
+    }
+
+    String registerUser (RequestBody formBody) throws IOException {
+        Request request = new Request.Builder()
+                .url(SERVER_URL)
+                .post(formBody)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
     }
 
     /**

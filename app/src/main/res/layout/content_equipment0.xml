@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Treadmill"
+    tools:showIn="@layout/activity_equipment0">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textColor = "@color/cardview_dark_background"
+        android:text="To mimic flat ground, move the treadmill's incline to 1 percent instead of 0. Ramp up the incline to 4 percent or more for hills.Instead of watching the minutes crawl by, pick a speed and incline that are challenging but doable and then focus on something other than the console for the duration of a motivating song on your playlist. When the song is over, check your distance and aim to beat it the next time around by punching up the pace." />
+
+</android.support.v4.widget.NestedScrollView>

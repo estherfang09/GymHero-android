@@ -7,14 +7,225 @@
     android:background="@color/blue_grey_700"
     android:orientation="vertical" tools:context=".MainActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- A CardView that contains a TextView -->
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view0"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment0name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:textSize="25sp"
+                        android:text="@string/equipment0"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment0blurb"
+                        android:layout_below="@+id/equipment0name"
+                        android:textSize = "15sp"
+                        android:text="@string/equipment0desc"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/equipment0blurb"
+                        android:text="More Info"
+                        android:onClick="moreInfo0" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- A CardView that contains a TextView -->
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view1"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment1name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:textSize="25sp"
+                        android:text="@string/equipment1"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment1blurb"
+                        android:layout_below="@+id/equipment1name"
+                        android:textSize = "15sp"
+                        android:text="@string/equipment1desc"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/equipment1blurb"
+                        android:text="More Info"
+                        android:onClick="moreInfo1" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- A CardView that contains a TextView -->
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment2name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:textSize="25sp"
+                        android:text="@string/equipment2"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment2blurb"
+                        android:layout_below="@+id/equipment2name"
+                        android:textSize = "15sp"
+                        android:text="@string/equipment2desc"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/equipment2blurb"
+                        android:text="More Info"
+                        android:onClick="moreInfo2" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- A CardView that contains a TextView -->
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view3"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment3name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:textSize="25sp"
+                        android:text="@string/equipment3"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/equipment3blurb"
+                        android:layout_below="@+id/equipment3name"
+                        android:textSize = "15sp"
+                        android:text="@string/equipment3desc"
+                        android:textColor="@color/cardview_dark_background"
+                        />
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/equipment3blurb"
+                        android:text="More Info"
+                        android:onClick="moreInfo3" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/registrationProgressBar" />
+
     <TextView android:text="@string/registering_message" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/informationTextView"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/registrationProgressBar" />
+
 
 </LinearLayout>

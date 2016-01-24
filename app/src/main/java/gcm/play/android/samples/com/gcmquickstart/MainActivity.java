@@ -22,17 +22,38 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
-public class MainActivity extends AppCompatActivity {
+import org.altbeacon.beacon.Beacon;
+import org.altbeacon.beacon.BeaconConsumer;
+import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
+import org.altbeacon.beacon.RangeNotifier;
+import org.altbeacon.beacon.Region;
+import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
+
+import java.io.IOException;
+import java.util.Collection;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
@@ -41,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mRegistrationProgressBar;
     private TextView mInformationTextView;
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    private String[] myDataset = new String[5];
+    private BackgroundPowerSaver backgroundPowerSaver;
+    private BeaconManager beaconManager;
+    private int currentUuid;
+    private int lastUuid = -1;
+    private boolean activateBeacon = true;
+
+    private static OkHttpClient client = new OkHttpClient();
+    private static final String USERNAME = "Bob";
+    private static final String SERVER_URL = "https://gymhero.herokuapp.com/api/userUsing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean sentToken = sharedPreferences
                         .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    mInformationTextView.setText(getString(R.string.gcm_send_message));
+                    mInformationTextView.setText("");
                 } else {
                     mInformationTextView.setText(getString(R.string.token_error_message));
                 }
@@ -70,7 +105,86 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
+
+        // Beacon
+        backgroundPowerSaver = new BackgroundPowerSaver(this);
+        beaconManager = BeaconManager.getInstanceForApplication(this);
+        beaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout("m:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24"));
+        beaconManager.bind(this);
+
     }
+
+    @Override
+    public void onBeaconServiceConnect() {
+        beaconManager.setRangeNotifier(new RangeNotifier() {
+            @Override
+            public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
+                if (beacons.size() > 0) {
+                    Beacon beacon = beacons.iterator().next();
+                    double distance = beacon.getDistance();
+                    currentUuid = beacon.getServiceUuid();
+                    // Action
+                    Log.i("beacon", "Detected Beacon");
+                    if (activateBeacon) {
+                        Log.i("beacon", "The first beacon I see is about " + distance + " meters away.");
+                        //stuff
+
+                        try {
+                            registerUser();
+                        } catch (Exception e) {
+                            Log.d("register", "Borked");
+                            e.printStackTrace();
+                        }
+
+
+                        lastUuid = currentUuid;
+                        activateBeacon = false;
+                    }
+                }
+            }
+        });
+
+        try {
+            beaconManager.startRangingBeaconsInRegion(new Region("myRangingUniqueId", null, null, null));
+        } catch (RemoteException e) {
+        }
+    }
+
+    public String registerUser () throws IOException {
+        // Add custom implementation, as needed.
+        RequestBody formBody = new FormBody.Builder()
+                .add("equipment", "1")
+                .add("user", USERNAME)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(SERVER_URL)
+                .post(formBody)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+
+    public void moreInfo1(View view) {
+        Intent intent = new Intent(this, Weights.class);
+        startActivity(intent);
+    }
+    public void moreInfo2(View view) {
+        Intent intent = new Intent(this, Elliptical.class);
+        startActivity(intent);
+    }
+    public void moreInfo3(View view) {
+        Intent intent = new Intent(this, Benchpress.class);
+        startActivity(intent);
+    }
+    public void moreInfo0(View view) {
+        Intent intent = new Intent(this, Treadmill.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onResume() {
@@ -84,12 +198,6 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
-
-
-
-
-
-
 
 
 

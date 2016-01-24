@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Benchpress"
+    tools:showIn="@layout/activity_equipment3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textColor = "@color/cardview_dark_background"
+        android:text="The Bench Press is a full body, compound exercise. It works your chest, shoulders and triceps most. It’s the most effective exercise to gain upper-body strength and muscle because it’s the upper-body exercise you’ll lift most weight on (more than Overhead Press). The bigger your bench, the bigger your chest. To avoid shoulder pain, tuck your elbows 75° when you lower the bar. Don’t try to stretch your chest by flaring your elbows 90° out. You’ll impinge your shoulders if your upper-arms are perpendicular to your torso at the bottom. Tuck your elbows 75° to Bench Press pain-free." />
+
+</android.support.v4.widget.NestedScrollView>

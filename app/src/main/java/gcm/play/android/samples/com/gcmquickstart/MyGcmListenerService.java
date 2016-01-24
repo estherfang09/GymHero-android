@@ -31,6 +31,7 @@ import com.google.android.gms.gcm.GcmListenerService;
 public class MyGcmListenerService extends GcmListenerService {
 
     private static final String TAG = "MyGcmListenerService";
+    private String equipment;
 
     /**
      * Called when message is received.
@@ -43,6 +44,7 @@ public class MyGcmListenerService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         String message = data.getString("message");
+        equipment = data.getString("equipment");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
@@ -83,8 +85,8 @@ public class MyGcmListenerService extends GcmListenerService {
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat_ic_notification)
-                .setContentTitle("GCM Message")
+                .setSmallIcon(R.drawable.ic_stat_name)
+                .setContentTitle("GymHero Tip " + equipment)
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
